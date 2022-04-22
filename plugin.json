@@ -1,0 +1,6 @@
+{
+  "name": "Example Plugin",
+  "author": "John Doe",
+  "frontend_bundle": "dist/example-plugin.js",
+  "flags": ["hot_reload", "_root"]
+}

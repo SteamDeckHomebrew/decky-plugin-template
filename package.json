@@ -1,0 +1,43 @@
+{
+  "name": "decky-plugin-template",
+  "version": "0.0.1",
+  "description": "A template to quickly create decky plugins from scratch, based on TypeScript and webpack",
+  "scripts": {
+    "build": "shx rm -rf dist && rollup -c",
+    "dev": "rollup -c -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SteamDeckHomebrew/decky-plugin-template.git"
+  },
+  "keywords": [
+    "decky",
+    "plugin",
+    "plugin-template",
+    "steam-deck",
+    "deck"
+  ],
+  "author": "Jonas Dellinger <jonas@dellinger.dev>",
+  "license": "GPL-2.0-or-later",
+  "bugs": {
+    "url": "https://github.com/SteamDeckHomebrew/decky-plugin-template/issues"
+  },
+  "homepage": "https://github.com/SteamDeckHomebrew/decky-plugin-template#readme",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^21.1.0",
+    "@rollup/plugin-node-resolve": "^13.2.1",
+    "@rollup/plugin-replace": "^4.0.0",
+    "@rollup/plugin-typescript": "^8.3.2",
+    "@types/react": "16.14.0",
+    "@types/webpack": "^5.28.0",
+    "react": "16.14.0",
+    "react-dom": "16.14.0",
+    "rollup": "^2.70.2",
+    "shx": "^0.3.4"
+  },
+  "dependencies": {
+    "decky-frontend-lib": "file:../decky-frontend-lib",
+    "react-icons": "^4.3.1"
+  }
+}
