@@ -26,6 +26,7 @@
   "homepage": "https://github.com/SteamDeckHomebrew/decky-plugin-template#readme",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.1.0",
+    "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.2.1",
     "@rollup/plugin-replace": "^4.0.0",
     "@rollup/plugin-typescript": "^8.3.2",
@@ -37,7 +38,7 @@
     "shx": "^0.3.4"
   },
   "dependencies": {
-    "decky-frontend-lib": "file:../decky-frontend-lib",
+    "decky-frontend-lib": "^0.0.2",
     "react-icons": "^4.3.1"
   }
 }

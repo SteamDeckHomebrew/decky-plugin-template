@@ -1,50 +1,59 @@
 import {
   Button,
   definePlugin,
-  PanelSection,
-  PanelSectionRow,
+  Menu,
+  MenuItem,
   ServerAPI,
-  TabTitle,
+  showModal,
+  staticClasses,
 } from "decky-frontend-lib";
-import { useState, VFC } from "react";
+import { VFC } from "react";
 import { FaShip } from "react-icons/fa";
 
-interface AddMethodArgs {
-  left: number;
-  right: number;
-}
+// interface AddMethodArgs {
+//   left: number;
+//   right: number;
+// }
 
-const Content: VFC<{ serverAPI: ServerAPI }> = ({ serverAPI }) => {
-  const [result, setResult] = useState<number | undefined>();
+const Content: VFC<{ serverAPI: ServerAPI }> = ({}) => {
+  // const [result, setResult] = useState<number | undefined>();
 
-  const onClick = async () => {
-    const result = await serverAPI.callPluginMethod<AddMethodArgs, number>(
-      "add",
-      {
-        left: 2,
-        right: 2,
-      }
-    );
-    if (result.success) {
-      setResult(result.result);
-    }
-  };
+  // const onClick = async () => {
+  //   const result = await serverAPI.callPluginMethod<AddMethodArgs, number>(
+  //     "add",
+  //     {
+  //       left: 2,
+  //       right: 2,
+  //     }
+  //   );
+  //   if (result.success) {
+  //     setResult(result.result);
+  //   }
+  // };
 
   return (
-    <PanelSection>
-      <PanelSectionRow>
-        <Button layout="below" bottomSeparator={false} onClick={onClick}>
-          What is 2+2?
-        </Button>
-        <div>Server says: {result}</div>
-      </PanelSectionRow>
-    </PanelSection>
+    <div>
+      <Button
+        onClick={(e) =>
+          showModal(
+            <Menu label="Menu" cancelText="CAAAANCEL" onCancel={() => {}}>
+              <MenuItem onSelected={() => {}}>Item #1</MenuItem>
+              <MenuItem onSelected={() => {}}>Item #2</MenuItem>
+              <MenuItem onSelected={() => {}}>Item #3</MenuItem>
+            </Menu>,
+            e.currentTarget ?? window
+          )
+        }
+      >
+        Server says yolo
+      </Button>
+    </div>
   );
 };
 
 export default definePlugin((serverApi) => {
   return {
-    title: <TabTitle>Example Plugin</TabTitle>,
+    title: <div className={staticClasses.Title}>Example Plugin</div>,
     content: <Content serverAPI={serverApi} />,
     icon: <FaShip />,
   };
