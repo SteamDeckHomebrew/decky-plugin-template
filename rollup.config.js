@@ -20,9 +20,10 @@ export default defineConfig({
   context: 'window',
   external: ['react', 'react-dom'],
   output: {
-    file: 'dist/example-plugin.js',
+    file: 'dist/index.js',
     globals: {
       react: 'SP_REACT',
+      'react-dom': 'SP_REACTDOM',
     },
     format: 'iife',
     exports: 'default',

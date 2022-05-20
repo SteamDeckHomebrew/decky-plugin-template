@@ -4,7 +4,7 @@
   "description": "A template to quickly create decky plugins from scratch, based on TypeScript and webpack",
   "scripts": {
     "build": "shx rm -rf dist && rollup -c",
-    "dev": "rollup -c -w",
+    "watch": "rollup -c -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -32,10 +32,10 @@
     "@rollup/plugin-typescript": "^8.3.2",
     "@types/react": "16.14.0",
     "@types/webpack": "^5.28.0",
-    "react": "16.14.0",
-    "react-dom": "16.14.0",
     "rollup": "^2.70.2",
-    "shx": "^0.3.4"
+    "shx": "^0.3.4",
+    "tslib": "^2.4.0",
+    "typescript": "^4.6.4"
   },
   "dependencies": {
     "decky-frontend-lib": "^0.0.2",
