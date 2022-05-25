@@ -5,11 +5,13 @@ import {
   MenuItem,
   ServerAPI,
   showModal,
-  staticClasses
+  staticClasses,
 } from "decky-frontend-lib";
-import { VFC } from "react";
 import * as React from "react"; // JSX needs this, since React < 17.0.0 doesn't support the JSX runtime.
+import { VFC } from "react";
 import { FaShip } from "react-icons/fa";
+
+import logo from "../assets/logo.png";
 
 // interface AddMethodArgs {
 //   left: number;
@@ -35,6 +37,7 @@ const Content: VFC<{ serverAPI: ServerAPI }> = ({}) => {
   return (
     <div>
       <Button
+        layout="below"
         onClick={(e) =>
           showModal(
             <Menu label="Menu" cancelText="CAAAANCEL" onCancel={() => {}}>
@@ -48,6 +51,7 @@ const Content: VFC<{ serverAPI: ServerAPI }> = ({}) => {
       >
         Server says yolo
       </Button>
+      <img src={logo} />
     </div>
   );
 };
