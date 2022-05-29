@@ -66,8 +66,8 @@ const Content: VFC<{ serverAPI: ServerAPI }> = ({}) => {
 
 export default definePlugin((serverApi: ServerAPI) => {
   return {
-    title: () => <div className={staticClasses.Title}>Example Plugin</div>,
-    content: () => <Content serverAPI={serverApi} />,
-    icon: () => <FaShip />,
+    title: <div className={staticClasses.Title}>Example Plugin</div>,
+    content: <Content serverAPI={serverApi} />,
+    icon: <FaShip />,
   };
 });
