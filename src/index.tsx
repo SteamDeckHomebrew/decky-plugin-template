@@ -8,7 +8,6 @@ import {
   staticClasses
 } from "decky-frontend-lib";
 import { VFC } from "react";
-import * as React from "react"; // JSX needs this, since React < 17.0.0 doesn't support the JSX runtime.
 import { FaShip } from "react-icons/fa";
 
 // interface AddMethodArgs {
@@ -54,8 +53,8 @@ const Content: VFC<{ serverAPI: ServerAPI }> = ({}) => {
 
 export default definePlugin((serverApi: ServerAPI) => {
   return {
-    title: <div className={staticClasses.Title}>Example Plugin</div>,
-    content: <Content serverAPI={serverApi} />,
-    icon: <FaShip />,
+    title: () => <div className={staticClasses.Title}>Example Plugin</div>,
+    content: () => <Content serverAPI={serverApi} />,
+    icon: () => <FaShip />,
   };
 });
