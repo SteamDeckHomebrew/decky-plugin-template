@@ -1,6 +1,5 @@
 {
   "name": "Example Plugin",
   "author": "John Doe",
-  "frontend_bundle": "dist/index.js",
   "flags": ["debug", "_root"]
 }
