@@ -1,10 +1,12 @@
 import {
   ButtonItem,
   definePlugin,
+  DialogButton,
   Menu,
   MenuItem,
   PanelSection,
   PanelSectionRow,
+  Router,
   ServerAPI,
   showModal,
   staticClasses,
@@ -60,14 +62,44 @@ const Content: VFC<{ serverAPI: ServerAPI }> = ({}) => {
           <img src={logo} />
         </div>
       </PanelSectionRow>
+
+      <PanelSectionRow>
+        <ButtonItem
+          layout="below"
+          onClick={() => {
+            Router.CloseSideMenus();
+            Router.Navigate("/decky-plugin-test");
+          }}
+        >
+          Router
+        </ButtonItem>
+      </PanelSectionRow>
     </PanelSection>
   );
 };
 
+const DeckyPluginRouterTest: VFC = () => {
+  return (
+    <div style={{ marginTop: "50px", color: "white" }}>
+      Hello World!
+      <DialogButton onClick={() => Router.NavigateToStore()}>
+        Go to Store
+      </DialogButton>
+    </div>
+  );
+};
+
 export default definePlugin((serverApi: ServerAPI) => {
+  serverApi.routerHook.addRoute("/decky-plugin-test", DeckyPluginRouterTest, {
+    exact: true,
+  });
+
   return {
     title: <div className={staticClasses.Title}>Example Plugin</div>,
     content: <Content serverAPI={serverApi} />,
     icon: <FaShip />,
+    onDismount() {
+      serverApi.routerHook.removeRoute("/decky-plugin-test");
+    },
   };
 });
