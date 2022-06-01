@@ -8,7 +8,7 @@ import {
   PanelSectionRow,
   Router,
   ServerAPI,
-  showModal,
+  showContextMenu,
   staticClasses,
 } from "decky-frontend-lib";
 import { VFC } from "react";
@@ -43,7 +43,7 @@ const Content: VFC<{ serverAPI: ServerAPI }> = ({}) => {
         <ButtonItem
           layout="below"
           onClick={(e) =>
-            showModal(
+            showContextMenu(
               <Menu label="Menu" cancelText="CAAAANCEL" onCancel={() => {}}>
                 <MenuItem onSelected={() => {}}>Item #1</MenuItem>
                 <MenuItem onSelected={() => {}}>Item #2</MenuItem>
