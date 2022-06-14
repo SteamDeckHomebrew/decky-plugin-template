@@ -16,15 +16,14 @@ This can be downloaded from `npm` itself which is recommended.
 sudo npm i -g pnpm
 ```
 
-### Installation
+### Keep Your Plugin Updated
 
-1. Clone the repository to use as an example for making your plugin.
-2. In your clone of the repository run these commands:
+1. In your plugin's repository run these commands:
    1. ``pnpm i``
    2.  (Optional, needed to solve build errors)
        1. ``pnpm update decky-frontend-lib --latest``
    3. ``pnpm run build``
-3. You should do this every time you make changes to your plugin.
+2. You should perform numbers 1 and 3 every time you make changes to your plugin.
 
 ### Distribution
 
