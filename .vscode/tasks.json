@@ -1,0 +1,42 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        // BUILD
+        {
+            "label": "pnpmsetup",
+            "type": "shell",
+            "group": "build",
+            "detail": "Setup pnpm",
+            "command": "pnpm i",
+            "problemMatcher": []
+        },
+        {
+            "label": "updatefrontendlib",
+            "type": "shell",
+            "group": "build",
+            "detail": "Update deck-frontend-lib",
+            "command": "pnpm update decky-frontend-lib --latest",
+            "problemMatcher": []
+        },
+        {
+            "label": "build",
+            "type": "npm",
+            "group": "build",
+            "detail": "rollup -c",
+            "script": "build",
+            "path": "",
+            "problemMatcher": [],
+        },
+        {
+            "label": "buildall",
+            "group": "build",
+            "detail": "Build decky-plugin-template",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "pnpmsetup",
+                "updatefrontendlib",
+                "build"
+            ]
+        }
+    ]
+}
