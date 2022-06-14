@@ -12,18 +12,24 @@ This template relies on the user having `pnpm` installed on their system.
 This can be downloaded from `npm` itself which is recommended. 
 
 #### Linux
+
 ```bash
 sudo npm i -g pnpm
 ```
 
-### Keep Your Plugin Updated
+### Getting Started
 
-1. In your plugin's repository run these commands:
+1. Clone the repository to use as an example for making your plugin.
+2. In your clone of the repository run these commands:
    1. ``pnpm i``
-   2.  (Optional, needed to solve build errors)
-       1. ``pnpm update decky-frontend-lib --latest``
-   3. ``pnpm run build``
-2. You should perform numbers 1 and 3 every time you make changes to your plugin.
+   2. ``pnpm run build``
+3. You should do this every time you make changes to your plugin.
+
+Note: If you are recieveing build errors due to an out of date library, you should run this command inside of your repository:
+
+```bash
+pnpm update decky-frontend-lib --latest
+```
 
 ### Distribution
 
