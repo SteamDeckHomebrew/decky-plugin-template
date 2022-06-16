@@ -10,29 +10,6 @@
             "command": "bash -c ${workspaceFolder}/.vscode/config.sh",
             "problemMatcher": []
         },
-        // DEPLOY
-        {
-            "label": "createfolders",
-            "detail": "Create plugins folder in expected directory",
-            "type": "shell",
-            "group": "none",
-            "dependsOn": [
-                "checkforsettings"
-            ],
-            "command": "ssh deck@${config:deckip} -p ${config:deckport} ${config:deckkey} 'mkdir -p ${config:deckdir}/homebrew/dev/pluginloader && mkdir -p ${config:deckdir}/homebrew/dev/plugins'",
-            "problemMatcher": []
-        },
-        {
-            "label": "deploy",
-            "detail": "Deploy dev plugin to deck",
-            "type": "shell",
-            "group": "none",
-            "dependsOn": [
-                "createfolders"
-            ],
-            "command": "rsync -azp --rsh='ssh -p ${config:deckport} ${config:deckkey}' --exclude='.git/' --exclude='.github/' --exclude='.vscode/' --exclude='node_modules/' --exclude='dist/' --exclude=`src/` --exclude=`assets/` --exclude='*.log' --exclude='.gitignore' . deck@${config:deckip}:${config:deckdir}/homebrew/dev/plugins/${workspaceFolderBasename}}",
-            "problemMatcher": []
-        },
         // BUILD
         {
             "label": "pnpmsetup",
@@ -41,7 +18,7 @@
             "detail": "Setup pnpm",
             "command": "pnpm i",
             "problemMatcher": []
-            "${workspaceFolderBasename}"
+            // "${workspaceFolderBasename}"
         },
         {
             "label": "updatefrontendlib",
@@ -69,6 +46,48 @@
                 "pnpmsetup",
                 "updatefrontendlib",
                 "build"
+            ]
+        },
+        // DEPLOY
+        {
+            "label": "createfolders",
+            "detail": "Create plugins folder in expected directory",
+            "type": "shell",
+            "group": "none",
+            "dependsOn": [
+                "checkforsettings"
+            ],
+            "command": "ssh deck@${config:deckip} -p ${config:deckport} ${config:deckkey} 'mkdir -p ${config:deckdir}/homebrew/dev/pluginloader && mkdir -p ${config:deckdir}/homebrew/dev/plugins'",
+            "problemMatcher": []
+        },
+        {
+            "label": "deploy",
+            "detail": "Deploy dev plugin to deck",
+            "type": "shell",
+            "group": "none",
+            "dependsOn": [
+                "createfolders"
+            ],
+            "command": "rsync -azp --delete --rsh='ssh -p ${config:deckport} ${config:deckkey}' --exclude='.git/' --exclude='.github/' --exclude='.vscode/' --exclude='node_modules/' --exclude='dist/' --exclude=`src/` --exclude=`assets/` --exclude='*.log' --exclude='.gitignore' . deck@${config:deckip}:${config:deckdir}/homebrew/dev/plugins/${workspaceFolderBasename}",
+            "problemMatcher": []
+        },
+        {
+            "label": "deployall",
+            "dependsOrder": "sequence",
+            "group": "none",
+            "dependsOn": [
+                "buildall",
+                "deploy"
+            ]
+        },
+        // ALL-IN-ONE
+        {
+            "label": "allinone",
+            "detail": "Build and deploy",
+            "dependsOrder": "sequence",
+            "group": "test",
+            "dependsOn": [
+                "deployall"
             ]
         }
     ]

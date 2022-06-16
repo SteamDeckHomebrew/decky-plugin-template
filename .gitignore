@@ -38,3 +38,5 @@ __pycache__/
 
 /.yalc
 yalc.lock
+
+.vscode/settings.json
