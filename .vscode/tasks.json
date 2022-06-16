@@ -43,7 +43,6 @@
             "dependsOrder": "sequence",
             "dependsOn": [
                 "pnpmsetup",
-                "updatefrontendlib",
                 "build"
             ],
             "problemMatcher": []
