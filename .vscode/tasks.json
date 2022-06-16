@@ -18,7 +18,6 @@
             "detail": "Setup pnpm",
             "command": "pnpm i",
             "problemMatcher": []
-            // "${workspaceFolderBasename}"
         },
         {
             "label": "updatefrontendlib",
@@ -35,7 +34,7 @@
             "detail": "rollup -c",
             "script": "build",
             "path": "",
-            "problemMatcher": [],
+            "problemMatcher": []
         },
         {
             "label": "buildall",
@@ -46,7 +45,8 @@
                 "pnpmsetup",
                 "updatefrontendlib",
                 "build"
-            ]
+            ],
+            "problemMatcher": []
         },
         // DEPLOY
         {
@@ -68,7 +68,7 @@
             "dependsOn": [
                 "createfolders"
             ],
-            "command": "rsync -azp --delete --rsh='ssh -p ${config:deckport} ${config:deckkey}' --exclude='.git/' --exclude='.github/' --exclude='.vscode/' --exclude='node_modules/' --exclude=`src/` --exclude='*.log' --exclude='.gitignore' . deck@${config:deckip}:${config:deckdir}/homebrew/dev/plugins/${workspaceFolderBasename}",
+            "command": "rsync -azp --delete --rsh='ssh -p ${config:deckport} ${config:deckkey}' --exclude='.git/' --exclude='.github/' --exclude='.vscode/' --exclude='node_modules/' --exclude='src/' --exclude='*.log' --exclude='.gitignore' . deck@${config:deckip}:${config:deckdir}/homebrew/dev/plugins/${workspaceFolderBasename}",
             "problemMatcher": []
         },
         {
@@ -86,7 +86,8 @@
             "dependsOn": [
                 "deploy",
                 "chmodfolders"
-            ]
+            ],
+            "problemMatcher": []
         },
         // ALL-IN-ONE
         {
@@ -97,7 +98,8 @@
             "dependsOn": [
                 "buildall",
                 "deployall"
-            ]
+            ],
+            "problemMatcher": []
         }
     ]
 }
