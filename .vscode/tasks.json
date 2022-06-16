@@ -68,7 +68,15 @@
             "dependsOn": [
                 "createfolders"
             ],
-            "command": "rsync -azp --delete --rsh='ssh -p ${config:deckport} ${config:deckkey}' --exclude='.git/' --exclude='.github/' --exclude='.vscode/' --exclude='node_modules/' --exclude='dist/' --exclude=`src/` --exclude=`assets/` --exclude='*.log' --exclude='.gitignore' . deck@${config:deckip}:${config:deckdir}/homebrew/dev/plugins/${workspaceFolderBasename}",
+            "command": "rsync -azp --delete --rsh='ssh -p ${config:deckport} ${config:deckkey}' --exclude='.git/' --exclude='.github/' --exclude='.vscode/' --exclude='node_modules/' --exclude=`src/` --exclude='*.log' --exclude='.gitignore' . deck@${config:deckip}:${config:deckdir}/homebrew/dev/plugins/${workspaceFolderBasename}",
+            "problemMatcher": []
+        },
+        {
+            "label": "chmodfolders",
+            "detail": "chmods folders to prevent perms issues",
+            "type": "shell",
+            "group": "none",
+            "command": "ssh deck@${config:deckip} -p ${config:deckport} ${config:deckkey} 'echo '${config:deckpass}' | sudo -S chmod -R ug+rw ${config:deckdir}/homebrew/dev/'",
             "problemMatcher": []
         },
         {
@@ -76,8 +84,8 @@
             "dependsOrder": "sequence",
             "group": "none",
             "dependsOn": [
-                "buildall",
-                "deploy"
+                "deploy",
+                "chmodfolders"
             ]
         },
         // ALL-IN-ONE
@@ -87,6 +95,7 @@
             "dependsOrder": "sequence",
             "group": "test",
             "dependsOn": [
+                "buildall",
                 "deployall"
             ]
         }
