@@ -1,5 +1,9 @@
 {
   "name": "Example Plugin",
   "author": "John Doe",
-  "flags": ["debug", "_root"]
+  "flags": ["debug", "_root"],
+  "publish": {
+    "tags": ["template", "root"],
+    "description": "Decky example plugin."
+  }
 }
