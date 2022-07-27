@@ -68,7 +68,7 @@
                 "createfolders",
                 "chmodfolders"
             ],
-            "command": "rsync -azp --delete --rsh='ssh -p ${config:deckport} ${config:deckkey}' --exclude='.git/' --exclude='.github/' --exclude='.vscode/' --exclude='node_modules/' --exclude='src/' --exclude='*.log' --exclude='.gitignore' . deck@${config:deckip}:${config:deckdir}/homebrew/plugins/${workspaceFolderBasename}",
+            "command": "rsync -azp --delete --chmod=D0755,F0755 --rsh='ssh -p ${config:deckport} ${config:deckkey}' --exclude='.git/' --exclude='.github/' --exclude='.vscode/' --exclude='node_modules/' --exclude='src/' --exclude='*.log' --exclude='.gitignore' . deck@${config:deckip}:${config:deckdir}/homebrew/plugins/${workspaceFolderBasename}",
             "problemMatcher": []
         },
         {
