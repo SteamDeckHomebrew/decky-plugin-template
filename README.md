@@ -33,5 +33,7 @@ pnpm update decky-frontend-lib --latest
 
 ### Distribution
 
-WIP. Check back in later.
+Plugins are distributed officially through the [decky-plugin-database](https://github.com/SteamDeckHomebrew/decky-plugin-database) via usage of submodules and PRs.  
+If you wish to distribute your plugin another way then you will need to build and bundle the plugin as a zip file.  
+Here users can install the zip file from a URL in the settings menu, they will be warned that the plugin is not verified via hash.
 
