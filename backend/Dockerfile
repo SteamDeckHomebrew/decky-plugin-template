@@ -1,4 +1,4 @@
-FROM arch:latest
+FROM archlinux:latest
 
 ADD ./backend/ /source
 ADD ./build/backend /build
