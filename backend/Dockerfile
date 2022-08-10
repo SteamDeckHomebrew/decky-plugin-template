@@ -1,6 +1,5 @@
 FROM ghcr.io/steamdeckhomebrew/holo-base:latest
 
-ADD ./backend/ /source
-ADD ./build/backend /build
+ENTRYPOINT [ "/source/entrypoint.sh" ]
 
-WORKDIR /source
+WORKDIR /src
