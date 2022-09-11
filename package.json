@@ -49,5 +49,6 @@
         "react-dom"
       ]
     }
-  }
+  },
+  "remote_binary" : ""
 }
