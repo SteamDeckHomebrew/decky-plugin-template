@@ -19,7 +19,7 @@
     "deck"
   ],
   "author": "Jonas Dellinger <jonas@dellinger.dev>",
-  "license": "LGPL-2.1-decky-exceptions",
+  "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/SteamDeckHomebrew/decky-plugin-template/issues"
   },
