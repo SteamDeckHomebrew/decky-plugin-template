@@ -52,7 +52,7 @@ In order to run these pre-made tasks:
 Notes about tasks:
 
 - View / modify tasks and task confguration in `PROJECT_ROOT/.vscode`
-- Update the vales in `settings.json` to your device's IP address and your deck user login password to enable the `deploy` task
+- Update the values in `settings.json` to your device's IP address and your deck user login password to enable the `deploy` task
 
 ### Troubleshooting
 
