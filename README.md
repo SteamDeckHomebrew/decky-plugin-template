@@ -43,7 +43,7 @@ If you're using vscode or a derivative you can use the tasks included in the `.v
 
 In order to run these pre-made tasks: 
 
-- open VSCode
+- Open VSCode
 - [install the "Task Runner" extension](https://marketplace.visualstudio.com/items?itemName=forbeslindesay.forbeslindesay-taskrunner) from the VS Code extension panel
 - Navigate back to your project files panel and click "Task Runner"
 - You will now see the tasks in the extension
