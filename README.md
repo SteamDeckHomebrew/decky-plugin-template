@@ -31,15 +31,49 @@ sudo npm i -g pnpm
    - While decky-loader primarily targets Steam Deck hardware so keep this in mind when developing your plugin.
 4. If you want an all encompassing demonstration of decky-frontend-lib's capabilites check out [decky-playground](https://github.com/SteamDeckHomebrew/decky-playground). It shows off almost all of decky-frontend-lib's features.
 
-#### Other important information
+#### Development and testing
 
-Everytime you change the frontend code (`index.tsx` etc) you will need to rebuild using the commands from step 2 above or the build task if you're using vscode or a derivative.
+### Re-building
 
-Note: If you are receiving build errors due to an out of date library, you should run this command inside of your repository:
+Every time you change the frontend code (`index.tsx` etc) you will need to rebuild using the commands from step 2 above.
+
+### Automation with VS Code
+
+If you're using vscode or a derivative you can use the tasks included in the `.vscode` template project to automate many parts of the process of building and deploying your plugin changes.
+
+In order to run these pre-made tasks: 
+
+- open VSCode
+- [install the "Task Runner" extension](https://marketplace.visualstudio.com/items?itemName=forbeslindesay.forbeslindesay-taskrunner) from the VS Code extension panel
+- Navigate back to your project files panel and click "Task Runner"
+- You will now see the tasks in the extension
+- Click a task to run it
+
+Notes about tasks:
+
+- View / modify tasks and task confguration in `PROJECT_ROOT/.vscode`
+- Update the vales in `settings.json` to your device's IP address and your deck user login password to enable the `deploy` task
+
+### Troubleshooting
+
+Out of date library errors:
+
+If you are receiving build errors due to an out of date library, you should run this command inside of your repository:
 
 ```bash
 pnpm update decky-frontend-lib --latest
 ```
+
+Build errors:
+
+When running `pnpm build` or the `build` VSCode task, you may see an error that says:
+
+```
+(!) If you do not supply "output.name", you may not be able to access the exports of an IIFE bundle.
+```
+
+You may **ignore** this warning. Adding configs for  `output.name` will actually prevent your plugin from loading properly
+
 
 ### Backend support
 

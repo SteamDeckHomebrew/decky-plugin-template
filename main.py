@@ -1,6 +1,6 @@
 import logging
 
-logging.basicConfig(filename="/tmp/template.log",
+logging.basicConfig(filename="/tmp/decky-plugin-template.log",
                     format='[Template] %(asctime)s %(levelname)s %(message)s',
                     filemode='w+',
                     force=True)
