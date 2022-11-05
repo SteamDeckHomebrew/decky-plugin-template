@@ -86,7 +86,7 @@ pluginname-v1.0.0.zip (version number is optional but recommended for users sake
    plugin.json [required]
    main.py {required if you are using the python backend of decky-loader: serverAPI}
    README.md (optional but recommended)
-   LICENSE(.md) {required in some cases, not in others}
+   LICENSE(.md) [required, filename should be roughly similair, suffix not needed]
 ```
 
 Note regarding licenses: Including a license is required for the plugin store if your chosen license requires the license to be included alongside usage of source-code/binaries!
