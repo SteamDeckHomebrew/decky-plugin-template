@@ -29,7 +29,7 @@ sudo npm i -g pnpm
 3. Consult the [decky-frontend-lib](https://github.com/SteamDeckHomebrew/decky-frontend-lib) repository for ways to accomplish your tasks.
    - Documentation and examples are still rough, 
    - While decky-loader primarily targets Steam Deck hardware so keep this in mind when developing your plugin.
-4. If you want an all encompassing demonstration of decky-frontend-lib's capabilites check out [decky-playground](https://github.com/SteamDeckHomebrew/decky-playground). It shows off almost all of decky-frontend-lib's features.
+4. If you want an all encompassing demonstration of decky-frontend-lib's capabilities check out [decky-playground](https://github.com/SteamDeckHomebrew/decky-playground). It shows off almost all of decky-frontend-lib's features.
 
 #### Other important information
 
@@ -64,7 +64,7 @@ More information on the bin folder can be found below in the distribution sectio
 ### Distribution
 
 We recommend following the instructions found in the [decky-plugin-database](https://github.com/SteamDeckHomebrew/decky-plugin-database) on how to get your plugin up on the plugin store. This is the best way to get your plugin in front of users.
-You can also choose to do distribution via a zip file containing the needed files, if that zip file is uploaded to a URL it can then be downloded and installed via decky-loader.
+You can also choose to do distribution via a zip file containing the needed files, if that zip file is uploaded to a URL it can then be downloaded and installed via decky-loader.
 
 **NOTE: We do not currently have a method to install from a downloaded zip file in "game-mode" due to lack of a usable file-picking dialog.**
 
@@ -86,7 +86,7 @@ pluginname-v1.0.0.zip (version number is optional but recommended for users sake
    plugin.json [required]
    main.py {required if you are using the python backend of decky-loader: serverAPI}
    README.md (optional but recommended)
-   LICENSE(.md) [required, filename should be roughly similair, suffix not needed]
+   LICENSE(.md) [required, filename should be roughly similar, suffix not needed]
 ```
 
 Note regarding licenses: Including a license is required for the plugin store if your chosen license requires the license to be included alongside usage of source-code/binaries!
