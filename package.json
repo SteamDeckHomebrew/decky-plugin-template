@@ -3,9 +3,8 @@
   "version": "0.0.1",
   "description": "A template to quickly create decky plugins from scratch, based on TypeScript and webpack",
   "scripts": {
-    "pip_install": "if [ -f requirements.txt ]; then\n\tpip install -U -r requirements.txt -t py_modules\nfi",
-    "build_frontend": "shx rm -rf dist && rollup -c",
-    "build": "pnpm run pipinstall && pnpm run build_frontend",
+    "prepare": "if [ -f requirements.txt ]; then\n\tpip install -U -r requirements.txt -t py_modules\nfi",
+    "build": "shx rm -rf dist && rollup -c",
     "watch": "rollup -c -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
