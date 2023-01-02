@@ -15,6 +15,7 @@ import { VFC } from "react";
 import { FaShip } from "react-icons/fa";
 
 import logo from "../assets/logo.png";
+import StyledComponent from "./StyledComponent";
 
 // interface AddMethodArgs {
 //   left: number;
@@ -55,6 +56,10 @@ const Content: VFC<{ serverAPI: ServerAPI }> = ({}) => {
         >
           Server says yolo
         </ButtonItem>
+      </PanelSectionRow>
+
+      <PanelSectionRow>
+        <StyledComponent />
       </PanelSectionRow>
 
       <PanelSectionRow>
