@@ -1,3 +1,8 @@
+import os
+import sys
+# append py_modules to PYTHONPATH
+sys.path.append(os.path.dirname(os.path.realpath(__file__))+"/py_modules")
+
 import logging
 
 logging.basicConfig(filename="/tmp/template.log",
