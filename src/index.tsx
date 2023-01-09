@@ -82,8 +82,8 @@ const DeckyPluginRouterTest: VFC = () => {
   return (
     <div style={{ marginTop: "50px", color: "white" }}>
       Hello World!
-      <DialogButton onClick={() => Router.NavigateToStore()}>
-        Go to Store
+      <DialogButton onClick={() => Router.NavigateToLibraryTab()}>
+        Go to Library
       </DialogButton>
     </div>
   );
