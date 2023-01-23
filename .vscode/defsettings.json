@@ -5,6 +5,7 @@
     "deckkey"   : "-i ${env:HOME}/.ssh/id_rsa",
     "deckdir"   : "/home/deck",
     "python.analysis.extraPaths": [
+        "../decky-loader/plugin",
         "./py_modules"
     ]
 }
