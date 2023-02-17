@@ -10,11 +10,12 @@ import {
   ServerAPI,
   showContextMenu,
   staticClasses,
+  Navigation
 } from "decky-frontend-lib";
 import { VFC } from "react";
 import { FaShip } from "react-icons/fa";
 
-import logo from "../assets/logo.png";
+import logo from "../../assets/logo.png";
 
 // interface AddMethodArgs {
 //   left: number;
@@ -82,7 +83,7 @@ const DeckyPluginRouterTest: VFC = () => {
   return (
     <div style={{ marginTop: "50px", color: "white" }}>
       Hello World!
-      <DialogButton onClick={() => Router.NavigateToLibraryTab()}>
+      <DialogButton onClick={() => Navigation.NavigateToLibraryTab()}>
         Go to Library
       </DialogButton>
     </div>
