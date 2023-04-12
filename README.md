@@ -8,8 +8,8 @@ Reference example for using [decky-frontend-lib](https://github.com/SteamDeckHom
 
 ### Dependencies
 
-This template relies on the user having `pnpm` installed on their system.  
-This can be downloaded from `npm` itself which is recommended. 
+This template relies on the user having Node.js v16.14+ and `pnpm` (v8+) installed on their system.  
+pnpm can be downloaded from `npm` itself which is recommended. 
 
 #### Linux
 
