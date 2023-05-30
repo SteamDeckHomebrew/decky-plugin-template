@@ -99,7 +99,7 @@
             "detail": "",
             "type": "shell",
             "group": "none",
-            "command": "echo '${config:deckdir}/homebrew/plugins/${config:pluginname}.zip' && ssh deck@${config:deckip} -p ${config:deckport} ${config:deckkey} 'echo ${config:deckpass} | sudo -S unzip -j \"${config:deckdir}/homebrew/plugins/${config:pluginname}.zip\" -d \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|\")\" '",
+            "command": "echo '${config:deckdir}/homebrew/plugins/${config:pluginname}.zip' && ssh deck@${config:deckip} -p ${config:deckport} ${config:deckkey} 'echo ${config:deckpass} | sudo -S mkdir 755 -p \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|\")\" && echo ${config:deckpass} | sudo -S chown deck:deck \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|\")\" && echo ${config:deckpass} | sudo -S bsdtar -xzpf \"${config:deckdir}/homebrew/plugins/${config:pluginname}.zip\" -C \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|\")\" --strip-components=1 --fflags '",
             "problemMatcher": []
         },
         //"All-in-one" deploy task
