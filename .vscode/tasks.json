@@ -1,116 +1,136 @@
 {
     "version": "2.0.0",
     "tasks": [
-        // OTHER
+        //PRELIMINARY SETUP TASKS
+        //Dependency setup task
         {
-            "label": "checkforsettings",
+            "label": "depsetup",
             "type": "shell",
             "group": "none",
-            "detail": "Check that settings.json has been created",
-            "command": "bash -c ${workspaceFolder}/.vscode/config.sh",
+            "detail": "Install depedencies for basic setup",
+            "linux": {
+                "command": "${workspaceFolder}/.vscode/setup.sh",
+            },
+            // // placeholder for windows scripts, not currently planned
+            // "windows": {
+            //     "command": "call -c ${workspaceFolder}\\.vscode\\setup.bat",
+            // },
             "problemMatcher": []
         },
-        // BUILD
+        //pnpm setup task to grab all needed modules
         {
             "label": "pnpmsetup",
             "type": "shell",
-            "group": "build",
+            "group": "none",
             "detail": "Setup pnpm",
-            "command": "pnpm i",
+            "command": "which pnpm && pnpm i",
             "problemMatcher": []
         },
+        //Preliminary "All-in-one" setup task
         {
-            "label": "updatefrontendlib",
-            "type": "shell",
-            "group": "build",
-            "detail": "Update deck-frontend-lib",
-            "command": "pnpm update decky-frontend-lib --latest",
+            "label": "setup",
+            "detail": "Set up depedencies, pnpm and update Decky Frontend Library.",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "depsetup",
+                "pnpmsetup",
+                "updatedfrontendlib"
+            ],
             "problemMatcher": []
         },
+        //Preliminary Deploy Config Setup
+        {
+            "label": "settingscheck",
+            "type": "shell",
+            "group": "none",
+            "detail": "Check that settings.json has been created",
+            "linux": {
+                "command": "${workspaceFolder}/.vscode/config.sh",
+            },
+            // // placeholder for windows scripts, not currently planned
+            // "windows": {
+            //     "command": "call ${workspaceFolder}\\.vscode\\config.bat",
+            // },
+            "problemMatcher": []
+        },
+        //BUILD TASKS
+        {
+            "label": "cli-build",
+            "group": "build",
+            "detail": "Build plugin with CLI",
+            "linux": {
+                "command": "${workspaceFolder}/.vscode/build.sh",
+            },
+            // // placeholder for windows logic, not currently planned
+            // "windows": {
+            //     "command": "call ${workspaceFolder}\\.vscode\\build.bat",
+            // },
+            "problemMatcher": []
+        },
+        //"All-in-one" build task
         {
             "label": "build",
-            "type": "npm",
-            "group": "build",
-            "detail": "rollup -c",
-            "script": "build",
-            "path": "",
-            "problemMatcher": []
-        },
-        {
-            "label": "buildall",
             "group": "build",
             "detail": "Build decky-plugin-template",
             "dependsOrder": "sequence",
             "dependsOn": [
-                "pnpmsetup",
-                "build"
+                "setup",
+                "settingscheck",
+                "cli-build",
             ],
             "problemMatcher": []
         },
-        // DEPLOY
+        //DEPLOY TASKS
+        //Copies the zip file of the built plugin to the plugins folder
         {
-            "label": "createfolders",
-            "detail": "Create plugins folder in expected directory",
+            "label": "copyzip",
+            "detail": "Deploy plugin zip to deck",
             "type": "shell",
             "group": "none",
             "dependsOn": [
-                "checkforsettings"
+                "chmodplugins"
             ],
-            "command": "ssh deck@${config:deckip} -p ${config:deckport} ${config:deckkey} 'mkdir -p ${config:deckdir}/homebrew/pluginloader && mkdir -p ${config:deckdir}/homebrew/plugins'",
+            "command": "rsync -azp --chmod=D0755,F0755 --rsh='ssh -p ${config:deckport} ${config:deckkey}' out/ deck@${config:deckip}:${config:deckdir}/homebrew/plugins",
             "problemMatcher": []
         },
+        //
+        {
+            "label": "extractzip",
+            "detail": "",
+            "type": "shell",
+            "group": "none",
+            "command": "echo '${config:deckdir}/homebrew/plugins/${config:pluginname}.zip' && ssh deck@${config:deckip} -p ${config:deckport} ${config:deckkey} 'echo ${config:deckpass} | sudo -S mkdir 755 -p \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|\")\" && echo ${config:deckpass} | sudo -S chown deck:deck \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|\")\" && echo ${config:deckpass} | sudo -S bsdtar -xzpf \"${config:deckdir}/homebrew/plugins/${config:pluginname}.zip\" -C \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|\")\" --strip-components=1 --fflags '",
+            "problemMatcher": []
+        },
+        //"All-in-one" deploy task
         {
             "label": "deploy",
-            "detail": "Deploy dev plugin to deck",
-            "type": "shell",
-            "group": "none",
-            "dependsOn": [
-                "createfolders",
-                "chmodfolders"
-            ],
-            "command": "rsync -azp --delete --chmod=D0755,F0755 --rsh='ssh -p ${config:deckport} ${config:deckkey}' --exclude='.git/' --exclude='.github/' --exclude='.vscode/' --exclude='node_modules/' --exclude='src/' --exclude='*.log' --exclude='.gitignore' . deck@${config:deckip}:${config:deckdir}/homebrew/plugins/${workspaceFolderBasename}",
-            "problemMatcher": []
-        },
-        {
-            "label": "restartloader",
-            "detail": "Restart the plugin loader (to load updated python code)",
-            "type": "shell",
-            "group": "none",
-            "dependsOn": [],
-            "command": "ssh deck@${config:deckip} -p ${config:deckport} ${config:deckkey} 'echo '${config:deckpass}' | sudo -S systemctl restart plugin_loader'",
-            "problemMatcher": []
-        },
-        {
-            "label": "chmodfolders",
-            "detail": "chmods folders to prevent perms issues",
-            "type": "shell",
-            "group": "none",
-            "command": "ssh deck@${config:deckip} -p ${config:deckport} ${config:deckkey} 'echo '${config:deckpass}' | sudo -S chmod -R ug+rw ${config:deckdir}/homebrew/'",
-            "problemMatcher": []
-        },
-        {
-            "label": "deployall",
             "dependsOrder": "sequence",
             "group": "none",
             "dependsOn": [
-                "deploy",
-                "chmodfolders"
+                "copyzip",
+                "extractzip"
             ],
             "problemMatcher": []
         },
-        // ALL-IN-ONE
+        //GENERAL TASKS
+        //Update Decky Frontend Library, aka DFL
         {
-            "label": "allinone",
-            "detail": "Build and deploy",
-            "dependsOrder": "sequence",
-            "group": "test",
-            "dependsOn": [
-                "buildall",
-                "deployall"
-                // Uncomment this line if you'd like your python code reloaded after deployment (this will restart Steam)
-                // ,"restartloader"
-            ],
+            "label": "updatefrontendlib",
+            "type": "shell",
+            "group": "build",
+            "detail": "Update deck-frontend-lib aka DFL",
+            "command": "pnpm update decky-frontend-lib --latest",
             "problemMatcher": []
-        }
+        },
+        //Used chmod plugins folder to allow copy-over of files
+        {
+            "label": "chmodplugins",
+            "detail": "chmods plugins folder to prevent perms issues",
+            "type": "shell",
+            "group": "none",
+            "command": "ssh deck@${config:deckip} -p ${config:deckport} ${config:deckkey} 'echo '${config:deckpass}' | sudo -S chmod -R ug+rw ${config:deckdir}/homebrew/plugins/'",
+            "problemMatcher": []
+        },
     ]
 }
