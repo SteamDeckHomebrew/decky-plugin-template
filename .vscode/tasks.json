@@ -34,7 +34,7 @@
             "dependsOn": [
                 "depsetup",
                 "pnpmsetup",
-                "updatedfrontendlib"
+                "updatefrontendlib"
             ],
             "problemMatcher": []
         },
@@ -110,6 +110,18 @@
             "dependsOn": [
                 "copyzip",
                 "extractzip"
+            ],
+            "problemMatcher": []
+        },
+        //"All-in-on" build & deploy task
+        {
+            "label": "builddeploy",
+            "detail": "Builds plugin and deploys to deck",
+            "dependsOrder": "sequence",
+            "group": "none",
+            "dependsOn": [
+                "build",
+                "deploy"
             ],
             "problemMatcher": []
         },
