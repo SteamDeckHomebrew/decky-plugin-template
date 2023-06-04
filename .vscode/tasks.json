@@ -34,7 +34,7 @@
             "dependsOn": [
                 "depsetup",
                 "pnpmsetup",
-                "updatedfrontendlib"
+                "updatefrontendlib"
             ],
             "problemMatcher": []
         },
@@ -90,7 +90,7 @@
             "dependsOn": [
                 "chmodplugins"
             ],
-            "command": "rsync -azp --chmod=D0755,F0755 --rsh='ssh -p ${config:deckport} ${config:deckkey}' out/ deck@${config:deckip}:${config:deckdir}/homebrew/plugins",
+            "command": "rsync -azp --chmod=D0755,F0755 --rsh='ssh -p ${config:deckport} ${config:deckkey}' out/ ${config:deckuser}@${config:deckip}:${config:deckdir}/homebrew/plugins",
             "problemMatcher": []
         },
         //
@@ -99,7 +99,7 @@
             "detail": "",
             "type": "shell",
             "group": "none",
-            "command": "echo '${config:deckdir}/homebrew/plugins/${config:pluginname}.zip' && ssh deck@${config:deckip} -p ${config:deckport} ${config:deckkey} 'echo ${config:deckpass} | sudo -S mkdir 755 -p \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|\")\" && echo ${config:deckpass} | sudo -S chown deck:deck \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|\")\" && echo ${config:deckpass} | sudo -S bsdtar -xzpf \"${config:deckdir}/homebrew/plugins/${config:pluginname}.zip\" -C \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|\")\" --strip-components=1 --fflags '",
+            "command": "echo '${config:deckdir}/homebrew/plugins/${config:pluginname}.zip' && ssh ${config:deckuser}@${config:deckip} -p ${config:deckport} ${config:deckkey} 'echo ${config:deckpass} | sudo -S mkdir 755 -p \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|\")\" && echo ${config:deckpass} | sudo -S chown ${config:deckuser}:${config:deckuser} \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|\")\" && echo ${config:deckpass} | sudo -S bsdtar -xzpf \"${config:deckdir}/homebrew/plugins/${config:pluginname}.zip\" -C \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|\")\" --strip-components=1 --fflags '",
             "problemMatcher": []
         },
         //"All-in-one" deploy task
@@ -110,6 +110,18 @@
             "dependsOn": [
                 "copyzip",
                 "extractzip"
+            ],
+            "problemMatcher": []
+        },
+        //"All-in-on" build & deploy task
+        {
+            "label": "builddeploy",
+            "detail": "Builds plugin and deploys to deck",
+            "dependsOrder": "sequence",
+            "group": "none",
+            "dependsOn": [
+                "build",
+                "deploy"
             ],
             "problemMatcher": []
         },
@@ -129,7 +141,7 @@
             "detail": "chmods plugins folder to prevent perms issues",
             "type": "shell",
             "group": "none",
-            "command": "ssh deck@${config:deckip} -p ${config:deckport} ${config:deckkey} 'echo '${config:deckpass}' | sudo -S chmod -R ug+rw ${config:deckdir}/homebrew/plugins/'",
+            "command": "ssh ${config:deckuser}@${config:deckip} -p ${config:deckport} ${config:deckkey} 'echo '${config:deckpass}' | sudo -S chmod -R ug+rw ${config:deckdir}/homebrew/plugins/'",
             "problemMatcher": []
         },
     ]
