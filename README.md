@@ -8,16 +8,19 @@ Reference example for using [decky-frontend-lib](https://github.com/SteamDeckHom
 
 ### Dependencies
 
-This template relies on the user having Node.js v16.14+ and `pnpm` (v8+) installed on their system.  
-pnpm can be downloaded from `npm` itself which is recommended. 
-
-If you would like to build plugins that have their own custom backends, Docker is required as it is used by the Decky CLI tool.
+This template relies on the user having Node.js v16.14+ and `pnpm` (v8.5.1) installed on their system.  
+Please make sure to install pnpm v8.5.1 to prevent issues with CI during plugin submission.  
+`pnpm` can be downloaded from `npm` itself which is recommended.
 
 #### Linux
 
 ```bash
-sudo npm i -g pnpm
+sudo npm i -g pnpm@8.5.1
 ```
+
+If you would like to build plugins that have their own custom backends, Docker is required as it is used by the Decky CLI tool.
+
+
 
 ### Making your own plugin
 
