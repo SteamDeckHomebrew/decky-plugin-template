@@ -21,7 +21,7 @@ import logo from "../assets/logo.png";
 //   right: number;
 // }
 
-const Content: VFC<{ serverAPI: ServerAPI }> = ({}) => {
+const Content: VFC<{ serverAPI: ServerAPI }> = ({serverAPI}) => {
   // const [result, setResult] = useState<number | undefined>();
 
   // const onClick = async () => {
