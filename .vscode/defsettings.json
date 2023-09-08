@@ -1,5 +1,5 @@
 {
-    "deckip"    : "0.0.0.0",
+    "deckip"    : "steamdeck.local",
     "deckport"  : "22",
     "deckuser"  : "deck",
     "deckpass"  : "ssap",
