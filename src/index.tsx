@@ -4,9 +4,9 @@ import {
   DialogButton,
   Menu,
   MenuItem,
+  Navigation,
   PanelSection,
   PanelSectionRow,
-  Router,
   ServerAPI,
   showContextMenu,
   staticClasses,
@@ -67,8 +67,8 @@ const Content: VFC<{ serverAPI: ServerAPI }> = ({serverAPI}) => {
         <ButtonItem
           layout="below"
           onClick={() => {
-            Router.CloseSideMenus();
-            Router.Navigate("/decky-plugin-test");
+            Navigation.CloseSideMenus();
+            Navigation.Navigate("/decky-plugin-test");
           }}
         >
           Router
@@ -82,7 +82,7 @@ const DeckyPluginRouterTest: VFC = () => {
   return (
     <div style={{ marginTop: "50px", color: "white" }}>
       Hello World!
-      <DialogButton onClick={() => Router.NavigateToLibraryTab()}>
+      <DialogButton onClick={() => Navigation.NavigateToLibraryTab()}>
         Go to Library
       </DialogButton>
     </div>
