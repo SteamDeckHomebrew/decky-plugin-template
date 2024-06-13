@@ -131,8 +131,8 @@
             "label": "updatefrontendlib",
             "type": "shell",
             "group": "build",
-            "detail": "Update deck-frontend-lib aka DFL",
-            "command": "pnpm update decky-frontend-lib --latest",
+            "detail": "Update @decky/ui aka DFL",
+            "command": "pnpm update @decky/ui --latest",
             "problemMatcher": []
         },
         //Used chmod plugins folder to allow copy-over of files

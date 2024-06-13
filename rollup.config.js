@@ -4,15 +4,27 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import typescript from '@rollup/plugin-typescript';
 import { defineConfig } from 'rollup';
+import del from 'rollup-plugin-delete';
 import importAssets from 'rollup-plugin-import-assets';
+import externalGlobals from 'rollup-plugin-external-globals';
 
-import { name } from "./plugin.json";
+// replace "assert" with "with" once node implements that
+import manifest from './plugin.json' assert { type: 'json' };
 
 export default defineConfig({
   input: './src/index.tsx',
   plugins: [
+    del({ targets: './dist/*', force: true }),
     commonjs(),
-    nodeResolve(),
+    nodeResolve({
+      browser: true
+    }),
+    externalGlobals({
+      react: 'SP_REACT',
+      'react-dom': 'SP_REACTDOM',
+      '@decky/ui': 'DFL',
+      '@decky/manifest': JSON.stringify(manifest)
+    }),
     typescript(),
     json(),
     replace({
@@ -20,19 +32,18 @@ export default defineConfig({
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
     importAssets({
-      publicPath: `http://127.0.0.1:1337/plugins/${name}/`
+      publicPath: `http://127.0.0.1:1337/plugins/${manifest.name}/`
     })
   ],
   context: 'window',
-  external: ["react", "react-dom", "decky-frontend-lib"],
+  external: ['react', 'react-dom', '@decky/ui'],
   output: {
-    file: "dist/index.js",
-    globals: {
-      react: "SP_REACT",
-      "react-dom": "SP_REACTDOM",
-      "decky-frontend-lib": "DFL"
-    },
-    format: 'iife',
-    exports: 'default',
+    dir: 'dist',
+    format: 'esm',
+    sourcemap: true,
+    // **Don't** change this.
+    sourcemapPathTransform: (relativeSourcePath) => relativeSourcePath.replace(/^\.\.\//, `decky://decky/plugin/${encodeURIComponent(manifest.name)}/`),
+    exports: 'default'
   },
 });
+

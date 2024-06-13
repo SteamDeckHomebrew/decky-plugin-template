@@ -2,6 +2,7 @@
   "name": "Example Plugin",
   "author": "John Doe",
   "flags": ["debug", "_root"],
+  "api_version": 1,
   "publish": {
     "tags": ["template", "root"],
     "description": "Decky example plugin.",

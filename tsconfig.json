@@ -15,9 +15,7 @@
     "noImplicitThis": true,
     "noImplicitAny": true,
     "strict": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true
+    "allowSyntheticDefaultImports": true
   },
   "include": ["src"],
   "exclude": ["node_modules"]
