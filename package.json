@@ -43,8 +43,8 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@decky/api": "^1.0.4",
-    "@decky/ui": "^4.0.2",
+    "@decky/api": "^1.0.5",
+    "@decky/ui": "^4.0.3",
     "react-icons": "^5.2.1"
   },
   "pnpm": {

@@ -6,11 +6,11 @@ settings:
 
 dependencies:
   '@decky/api':
-    specifier: ^1.0.4
-    version: 1.0.4
+    specifier: ^1.0.5
+    version: 1.0.5
   '@decky/ui':
-    specifier: ^4.0.2
-    version: 4.0.2
+    specifier: ^4.0.3
+    version: 4.0.3
   react-icons:
     specifier: ^5.2.1
     version: 5.2.1
@@ -64,12 +64,12 @@ devDependencies:
 
 packages:
 
-  /@decky/api@1.0.4:
-    resolution: {integrity: sha512-YChHjlk//lOiIM2tlNSd6Qk9aduFJOtG+uRv1JaTzLewPRj4dDeupC+mbJJfarMGYa4nsLnJ6BsubTqboeb+VQ==}
+  /@decky/api@1.0.5:
+    resolution: {integrity: sha512-ghIewwXzedYDq0l5eik21Rg0Fd3DFeniCIjL6M90Zc/bOH7vlKpgUGl+V/5/TvaGKkYW51hsMV6Usfy5OZFM7Q==}
     dev: false
 
-  /@decky/ui@4.0.2:
-    resolution: {integrity: sha512-sU1Dz2dOyysEcXus3iix/7lgaR3V8H/0VPUHuQkiD7CibPw1ksUDYR2DUwNo48S0Pe4D4nDp9hOEOFyfrWWLDw==}
+  /@decky/ui@4.0.3:
+    resolution: {integrity: sha512-hlpf0QL3mrnv/Bl3T7AP9vHCbZhGPtlQVk1XJkvOdd43LJH9q6ErxdKe0YCvGTnvYcDm6vS90flYUGUY4zmEvw==}
     dev: false
 
   /@isaacs/cliui@8.0.2:
