@@ -4,7 +4,7 @@
   "description": "A template to quickly create decky plugins from scratch, based on TypeScript and webpack",
   "type": "module",
   "scripts": {
-    "build": "shx rm -rf dist && rollup -c",
+    "build": "rollup -c",
     "watch": "rollup -c -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -26,26 +26,18 @@
   },
   "homepage": "https://github.com/SteamDeckHomebrew/decky-plugin-template#readme",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^26.0.1",
-    "@rollup/plugin-json": "^6.1.0",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "@rollup/plugin-replace": "^5.0.7",
-    "@rollup/plugin-typescript": "^11.1.6",
+    "@decky/rollup": "^1.0.0",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "@types/webpack": "^5.28.5",
     "rollup": "^4.18.0",
-    "rollup-plugin-delete": "^2.0.0",
-    "rollup-plugin-external-globals": "^0.10.0",
-    "rollup-plugin-import-assets": "^1.1.1",
-    "shx": "^0.3.4",
-    "tslib": "^2.6.3",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.3"
   },
   "dependencies": {
     "@decky/api": "^1.0.5",
     "@decky/ui": "^4.0.3",
-    "react-icons": "^5.2.1"
+    "react-icons": "^5.2.1",
+    "tslib": "^2.6.3"
   },
   "pnpm": {
     "peerDependencyRules": {

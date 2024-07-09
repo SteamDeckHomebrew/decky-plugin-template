@@ -2,9 +2,8 @@ import {
   ButtonItem,
   PanelSection,
   PanelSectionRow,
-  Router,
-  // ServerAPI,
-  staticClasses,
+  Navigation,
+  staticClasses
 } from "@decky/ui";
 import {
   addEventListener,
