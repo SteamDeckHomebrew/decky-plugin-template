@@ -36,8 +36,6 @@ If you use VSCode or it's derivatives (we suggest [VSCodium](https://vscodium.co
    - While decky-loader primarily targets Steam Deck hardware so keep this in mind when developing your plugin.
 4. Run the `setup` and `build` and `deploy` vscode tasks, or you can derive your own makefile or just manually utilize the scripts for these commands as you see fit.
 
-If you use VSCode or it's derivatives (we suggest [VSCodium](https://vscodium.com/)!) just run the `setup` and `build` tasks. It's really that simple.
-
 #### Other important information
 
 Everytime you change the frontend code (`index.tsx` etc) you will need to rebuild using the commands from step 2 above or the build task if you're using vscode or a derivative.
