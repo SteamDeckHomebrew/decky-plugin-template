@@ -20,11 +20,7 @@ sudo npm i -g pnpm@8.5.1
 
 If you would like to build plugins that have their own custom backends, Docker is required as it is used by the Decky CLI tool.
 
-
-
 ### Making your own plugin
-
-If you use VSCode or it's derivatives (we suggest [VSCodium](https://vscodium.com/)!) just run the `setup` and `build` tasks. It's really that simple.
 
 1. You can fork this repo or utilize the "Use this template" button on Github.
 2. In your local fork/own plugin-repository run these commands:
@@ -34,7 +30,7 @@ If you use VSCode or it's derivatives (we suggest [VSCodium](https://vscodium.co
 3. Consult the [decky-frontend-lib](https://github.com/SteamDeckHomebrew/decky-frontend-lib) repository for ways to accomplish your tasks.
    - Documentation and examples are still rough, 
    - While decky-loader primarily targets Steam Deck hardware so keep this in mind when developing your plugin.
-4. Run the `setup` and `build` and `deploy` vscode tasks, or you can derive your own makefile or just manually utilize the scripts for these commands as you see fit.
+4. If using VSCodium/VSCode, run the `setup` and `build` and `deploy` tasks. If not using VSCodium etc. you can derive your own makefile or just manually utilize the scripts for these commands as you see fit.
 
 If you use VSCode or it's derivatives (we suggest [VSCodium](https://vscodium.com/)!) just run the `setup` and `build` tasks. It's really that simple.
 
