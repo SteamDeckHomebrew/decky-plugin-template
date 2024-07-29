@@ -62,8 +62,8 @@ function Content() {
         <ButtonItem
           layout="below"
           onClick={() => {
-            Navigation.CloseSideMenus();
             Navigation.Navigate("/decky-plugin-test");
+            Navigation.CloseSideMenus();
           }}
         >
           Router
