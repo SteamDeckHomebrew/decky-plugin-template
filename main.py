@@ -1,9 +1,9 @@
 import os
 
-# The decky plugin module is located at decky-loader/plugin
+# The decky plugin module is located at decky-loader (repo) -> backend/decky_loader/plugin/imports
 # For easy intellisense checkout the decky-loader code one directory up
-# or add the `decky-loader/plugin` path to `python.analysis.extraPaths` in `.vscode/settings.json`
-import decky_plugin
+# and add the `decky-loader/backend/decky_loader/plugin/imports` path to `python.analysis.extraPaths` in `.vscode/settings.json`
+import decky as decky_plugin
 
 
 class Plugin:

@@ -61,6 +61,9 @@
             "linux": {
                 "command": "${workspaceFolder}/.vscode/build.sh",
             },
+            "osx": {
+                "command": "${workspaceFolder}/.vscode/build.sh",
+            },
             // // placeholder for windows logic, not currently planned
             // "windows": {
             //     "command": "call ${workspaceFolder}\\.vscode\\build.bat",
@@ -90,7 +93,12 @@
             "dependsOn": [
                 "chmodplugins"
             ],
-            "command": "rsync -azp --chmod=D0755,F0755 --rsh='ssh -p ${config:deckport} ${config:deckkey}' out/ ${config:deckuser}@${config:deckip}:${config:deckdir}/homebrew/plugins",
+            "linux": {
+                "command": "rsync -azp --chmod=D0755,F0755 --rsh='ssh -p ${config:deckport} ${config:deckkey}' out/ ${config:deckuser}@${config:deckip}:${config:deckdir}/homebrew/plugins",
+            },
+            "osx": {
+                "command": "rsync -azp  --rsh='ssh -p ${config:deckport} ${config:deckkey}' out/ ${config:deckuser}@${config:deckip}:${config:deckdir}/homebrew/plugins",
+            },
             "problemMatcher": []
         },
         //
