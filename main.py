@@ -20,8 +20,15 @@ class Plugin:
         self.loop = asyncio.get_event_loop()
         decky.logger.info("Hello World!")
 
-    # Function called first during the unload process, utilize this to handle your plugin being removed
+    # Function called first during the unload process, utilize this to handle your plugin being stopped, but not
+    # completely removed
     async def _unload(self):
+        decky.logger.info("Goodnight World!")
+        pass
+
+    # Function called after `_unload` during uninstall, utilize this to clean up processes and other remnants of your
+    # plugin that may remain on the system
+    async def _uninstall(self):
         decky.logger.info("Goodbye World!")
         pass
 
