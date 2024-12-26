@@ -24,8 +24,8 @@ If you would like to build plugins that have their own custom backends, Docker i
 
 1. You can fork this repo or utilize the "Use this template" button on Github.
 2. In your local fork/own plugin-repository run these commands:
-   1. ``pnpm i``
-   2. ``pnpm run build``
+   1. `pnpm i`
+   2. `pnpm run build`
    - These setup pnpm and build the frontend code for testing.
 3. Consult the [decky-frontend-lib](https://github.com/SteamDeckHomebrew/decky-frontend-lib) repository for ways to accomplish your tasks.
    - Documentation and examples are still rough,
