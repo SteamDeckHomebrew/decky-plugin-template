@@ -132,11 +132,12 @@
         //Used chmod plugins folder to allow copy-over of files
         {
             "label": "chmodplugins",
-            "detail": "chmods plugins folder to prevent perms issues",
+            "detail": "chmods plugins folder to prevent permission issues",
             "type": "shell",
             "group": "none",
-            "command": "ssh ${config:deckuser}@${config:deckip} -p ${config:deckport} ${config:deckkey} 'echo '${config:deckpass}' | sudo -S chmod -R ug+rw ${config:deckdir}/homebrew/plugins/'",
+            "command": "ssh -i ${config:deckkey} ${config:deckuser}@${config:deckip} -p ${config:deckport} 'echo \"${config:deckpass}\" | sudo -S chmod -R ug+rw /home/deck/homebrew/plugins/'",
             "problemMatcher": []
-        },
+         }
+         
     ]
 }
