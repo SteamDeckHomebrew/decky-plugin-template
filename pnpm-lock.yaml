@@ -24,6 +24,9 @@ importers:
       '@decky/ui':
         specifier: ^4.7.2
         version: 4.7.2
+      '@rollup/rollup-linux-x64-musl':
+        specifier: 4.22.5
+        version: 4.22.5
       '@types/react':
         specifier: 18.3.3
         version: 18.3.3
@@ -1055,8 +1058,7 @@ snapshots:
   '@rollup/rollup-linux-x64-gnu@4.22.5':
     optional: true
 
-  '@rollup/rollup-linux-x64-musl@4.22.5':
-    optional: true
+  '@rollup/rollup-linux-x64-musl@4.22.5': {}
 
   '@rollup/rollup-win32-arm64-msvc@4.22.5':
     optional: true
