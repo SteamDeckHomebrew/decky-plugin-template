@@ -9,8 +9,9 @@
     "build": "rollup -c",
     "build:plugin": "pnpm run build && ./cli/decky plugin build .",
     "build:deploy": "pnpm run build:plugin && pnpm run deploy",
-    "deploy": "dotenv -- pnpm run deploy:run",
-    "deploy:run": "set -e; PLUGIN_SAFE_NAME=$(echo \"$PLUGIN_NAME\" | tr ' ' '-'); SSH_OPTS=\"-C -p $DECK_PORT -o StrictHostKeyChecking=no -o ConnectTimeout=10\"; [ -n \"$DECK_KEY\" ] && SSH_OPTS=\"$SSH_OPTS $DECK_KEY\"; echo \"📦 Deploying 'out/$PLUGIN_NAME.zip' to $DECK_USER@$DECK_IP:$DECK_DIR/homebrew/plugins/$PLUGIN_SAFE_NAME\"; cat \"out/$PLUGIN_NAME.zip\" | ssh $SSH_OPTS $DECK_USER@$DECK_IP \"set -e; mkdir -p '$DECK_DIR/homebrew/plugins/$PLUGIN_SAFE_NAME'; bsdtar -xpf - -C '$DECK_DIR/homebrew/plugins/$PLUGIN_SAFE_NAME' --strip-components=1\"",
+    "deploy": "dotenv -- sh -c 'if [ \"$DECK_IP\" = \"localhost\" ] || [ \"$DECK_IP\" = \"127.0.0.1\" ]; then pnpm run deploy:local; else pnpm run deploy:remote; fi'",
+    "deploy:local": "set -e; PLUGIN_SAFE_NAME=$(echo \"$PLUGIN_NAME\" | tr ' ' '-'); echo \"📦 Deploying 'out/$PLUGIN_NAME.zip' locally to $DECK_DIR/homebrew/plugins/$PLUGIN_SAFE_NAME\"; mkdir -p \"$DECK_DIR/homebrew/plugins/$PLUGIN_SAFE_NAME\"; bsdtar -xpf \"out/$PLUGIN_NAME.zip\" -C \"$DECK_DIR/homebrew/plugins/$PLUGIN_SAFE_NAME\" --strip-components=1",
+    "deploy:remote": "set -e; PLUGIN_SAFE_NAME=$(echo \"$PLUGIN_NAME\" | tr ' ' '-'); SSH_OPTS=\"-C -p $DECK_PORT -o StrictHostKeyChecking=no -o ConnectTimeout=10\"; [ -n \"$DECK_KEY\" ] && SSH_OPTS=\"$SSH_OPTS $DECK_KEY\"; echo \"📦 Deploying 'out/$PLUGIN_NAME.zip' remotely to $DECK_USER@$DECK_IP:$DECK_DIR/homebrew/plugins/$PLUGIN_SAFE_NAME\"; cat \"out/$PLUGIN_NAME.zip\" | ssh $SSH_OPTS $DECK_USER@$DECK_IP \"set -e; mkdir -p '$DECK_DIR/homebrew/plugins/$PLUGIN_SAFE_NAME'; bsdtar -xpf - -C '$DECK_DIR/homebrew/plugins/$PLUGIN_SAFE_NAME' --strip-components=1\"",
     "watch": "rollup -c -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
