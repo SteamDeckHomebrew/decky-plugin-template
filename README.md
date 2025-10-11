@@ -30,9 +30,11 @@ If you would like to build plugins that have their own custom backends, Docker i
 3. Consult the [decky-frontend-lib](https://github.com/SteamDeckHomebrew/decky-frontend-lib) repository for ways to accomplish your tasks.
    - Documentation and examples are still rough, 
    - Decky loader primarily targets Steam Deck hardware so keep this in mind when developing your plugin.
-4. If using VSCodium/VSCode, run the `setup` and `build` and `deploy` tasks. If not using VSCodium etc. you can derive your own makefile or just manually utilize the scripts for these commands as you see fit.
+4. To build and deploy the plugin package first copy `.env.example` to `.env` and update any relevant settings. Then either:
+   - Run pnpm commands `pnpm run setup` and `pnpm run build:plugin` and `pnpm run deploy`
+   - Run VSCode tasks Ctrl+Shift+P or Cmd+Shift+P and run: `Tasks: Run Task` and choose the task to run.
 
-If you use VSCode or it's derivatives (we suggest [VSCodium](https://vscodium.com/)!) just run the `setup` and `build` tasks. It's really that simple.
+If you use VSCode or it's derivatives (we suggest [VSCodium](https://vscodium.com/)!) just run the `setup` and `build:plugin` and `deploy` tasks. It's really that simple.
 
 #### Other important information
 

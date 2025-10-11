@@ -2,7 +2,6 @@ import {
   ButtonItem,
   PanelSection,
   PanelSectionRow,
-  Navigation,
   staticClasses
 } from "@decky/ui";
 import {
@@ -98,7 +97,7 @@ export default definePlugin(() => {
 
   return {
     // The name shown in various decky menus
-    name: "Test Plugin",
+    name: "Example Plugin",
     // The element displayed at the top of your plugin's menu
     titleView: <div className={staticClasses.Title}>Decky Example Plugin</div>,
     // The content of your plugin's menu
