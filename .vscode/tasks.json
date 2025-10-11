@@ -1,5 +1,15 @@
 {
     "version": "2.0.0",
+    "options": {
+        "shell": {
+            "executable": "/bin/bash",
+            "args": [
+                "-l",
+                "-i",
+                "-c"
+            ]
+        }
+    },
     "tasks": [
         {
             "label": "setup",
