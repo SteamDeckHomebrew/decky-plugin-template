@@ -2,7 +2,26 @@
 
 Reference example for using [decky-frontend-lib](https://github.com/SteamDeckHomebrew/decky-frontend-lib) (@decky/ui) in a [decky-loader](https://github.com/SteamDeckHomebrew/decky-loader) plugin.
 
-### **Please also refer to the [wiki](https://wiki.deckbrew.xyz/en/user-guide/home#plugin-development) for important information on plugin development and submissions/updates. currently documentation is split between this README and the wiki which is something we are hoping to rectify in the future.**  
+## Documentation
+
+Plugin development documentation is available in the `docs/wiki` submodule (sourced from [Decky wiki](https://github.com/SteamDeckHomebrew/wiki)).
+
+**After cloning this template, initialize the wiki submodule:**
+
+```bash
+git submodule update --init --recursive
+```
+
+### Quick Links to Key Documentation:
+
+- **[Getting Started](docs/wiki/plugin-dev/getting-started.md)** - Plugin structure, metadata files, frontend/backend basics
+- **[Environment Variables](docs/wiki/plugin-dev/env-vars.md)** - Available environment variables for your plugin
+- **[Submitting Plugins](docs/wiki/plugin-dev/submitting-plugins.md)** - Guidelines for submitting to the plugin store
+- **[Review and Testing](docs/wiki/plugin-dev/review-and-testing.md)** - Requirements for plugin review
+- **[Route Patching](docs/wiki/plugin-dev/route-patching.md)** - Modifying the existing Steam Deck UI
+- **[API Documentation](docs/wiki/api-docs/decky-frontend-lib/)** - decky-frontend-lib API reference
+
+You can also view the documentation online at [wiki.deckbrew.xyz](https://wiki.deckbrew.xyz/en/user-guide/home#plugin-development).
 
 ## Developers
 
@@ -27,8 +46,8 @@ If you would like to build plugins that have their own custom backends, Docker i
    1. ``pnpm i``
    2. ``pnpm run build``
    - These setup pnpm and build the frontend code for testing.
-3. Consult the [decky-frontend-lib](https://github.com/SteamDeckHomebrew/decky-frontend-lib) repository for ways to accomplish your tasks.
-   - Documentation and examples are still rough, 
+3. Consult the documentation in `docs/wiki` or the [decky-frontend-lib](https://github.com/SteamDeckHomebrew/decky-frontend-lib) repository for ways to accomplish your tasks.
+   - Review the [Getting Started guide](docs/wiki/plugin-dev/getting-started.md) for detailed plugin structure information
    - Decky loader primarily targets Steam Deck hardware so keep this in mind when developing your plugin.
 4. If using VSCodium/VSCode, run the `setup` and `build` and `deploy` tasks. If not using VSCodium etc. you can derive your own makefile or just manually utilize the scripts for these commands as you see fit.
 
