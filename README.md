@@ -71,8 +71,6 @@ More information on the bin folder can be found below in the distribution sectio
 We recommend following the instructions found in the [decky-plugin-database](https://github.com/SteamDeckHomebrew/decky-plugin-database) on how to get your plugin up on the plugin store. This is the best way to get your plugin in front of users.
 You can also choose to do distribution via a zip file containing the needed files, if that zip file is uploaded to a URL it can then be downloaded and installed via decky-loader.
 
-**NOTE: We do not currently have a method to install from a downloaded zip file in "game-mode" due to lack of a usable file-picking dialog.**
-
 Layout of a plugin zip ready for distribution:
 ```
 pluginname-v1.0.0.zip (version number is optional but recommended for users sake)
