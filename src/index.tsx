@@ -100,7 +100,7 @@ export default definePlugin(() => {
     // The name shown in various decky menus
     name: "Test Plugin",
     // The element displayed at the top of your plugin's menu
-    titleView: "Decky Example Plugin",
+    titleView: <>"Decky Example Plugin"</>,
     // The content of your plugin's menu
     content: <Content />,
     // The icon displayed in the plugin list
