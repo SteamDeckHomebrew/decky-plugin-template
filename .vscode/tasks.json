@@ -60,7 +60,7 @@
             //     "command": "call ${workspaceFolder}\\.vscode\\build.bat",
             // },
             "problemMatcher": []
-        }, 
+        },
         //"All-in-one" build task
         {
             "label": "build",
