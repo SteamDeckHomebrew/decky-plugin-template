@@ -60,7 +60,7 @@
             //     "command": "call ${workspaceFolder}\\.vscode\\build.bat",
             // },
             "problemMatcher": []
-        }, 
+        },
         //"All-in-one" build task
         {
             "label": "build",
@@ -78,13 +78,24 @@
         //Copies the zip file of the built plugin to the plugins folder
         {
             "label": "copyzip",
-            "detail": "Deploy plugin zip to deck",
+            "detail": "Deploy plugin zip to tmp in deck",
             "type": "shell",
             "group": "none",
             "dependsOn": [
                 "chmodplugins"
             ],
-            "command": "rsync -azp --chmod=D0755,F0755 --rsh='ssh -p ${config:deckport} ${config:deckkey}' out/ ${config:deckuser}@${config:deckip}:${config:deckdir}/homebrew/plugins",
+            "command": "rsync -azp --chmod=D0755,F0755 --rsh='ssh -p ${config:deckport} ${config:deckkey}' out/ ${config:deckuser}@${config:deckip}:/tmp/plugins-tmp",
+            "problemMatcher": []
+        },
+        {
+            "label": "movetoplugins",
+            "detail": "Move plugin zip from tmp to plugins in deck",
+            "type": "shell",
+            "group": "none",
+            "dependsOn": [
+                "copyzip"
+            ],
+            "command": "ssh -p ${config:deckport} ${config:deckkey} ${config:deckuser}@${config:deckip} \"echo ${config:deckpass} | sudo -S mkdir -p '${config:deckdir}/homebrew/plugins' && echo ${config:deckpass} | sudo -S mv /tmp/plugins-tmp/* '${config:deckdir}/homebrew/plugins/'\"",
             "problemMatcher": []
         },
         //
@@ -96,6 +107,30 @@
             "command": "echo '${config:deckdir}/homebrew/plugins/${config:pluginname}.zip' && ssh ${config:deckuser}@${config:deckip} -p ${config:deckport} ${config:deckkey} 'echo ${config:deckpass} | sudo -S mkdir -m 755 -p \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|g\")\" && echo ${config:deckpass} | sudo -S chown ${config:deckuser}:${config:deckuser} \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|g\")\" && echo ${config:deckpass} | sudo -S bsdtar -xzpf \"${config:deckdir}/homebrew/plugins/${config:pluginname}.zip\" -C \"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|g\")\" --strip-components=1 --fflags '",
             "problemMatcher": []
         },
+        {
+            "label": "removezip",
+            "detail": "Remove plugin zip from deck",
+            "type": "shell",
+            "group": "none",
+            "command": "echo '${config:deckdir}/homebrew/plugins/${config:pluginname}.zip' && ssh ${config:deckuser}@${config:deckip} -p ${config:deckport} ${config:deckkey} 'echo ${config:deckpass} | sudo -S rm -f \"${config:deckdir}/homebrew/plugins/${config:pluginname}.zip\"'",
+            "problemMatcher": []
+        },
+        {
+            "label": "restoreperms",
+            "detail": "Restores permissions and ownership for plugin folder and files in deck",
+            "type": "shell",
+            "group": "none",
+            "command": "ssh ${config:deckuser}@${config:deckip} -p ${config:deckport} ${config:deckkey} 'PLUGIN_DIR=\"$(echo \"${config:deckdir}/homebrew/plugins/${config:pluginname}\" | sed \"s| |-|g\")\" && echo ${config:deckpass} | sudo -S chmod -R 775 \"$PLUGIN_DIR\" && echo ${config:deckpass} | sudo -S chown -R ${config:deckuser}:${config:deckuser} \"$PLUGIN_DIR\" && echo ${config:deckpass} | sudo -S chown root:root \"$PLUGIN_DIR\" && echo ${config:deckpass} | sudo -S chown root:root \"$PLUGIN_DIR/plugin.json\"'",
+            "problemMatcher": []
+        },
+        {
+            "label": "restartdecky",
+            "detail": "",
+            "type": "shell",
+            "group": "none",
+            "command": "ssh ${config:deckuser}@${config:deckip} -p ${config:deckport} ${config:deckkey} 'echo ${config:deckpass} | sudo -S systemctl restart plugin_loader.service'",
+            "problemMatcher": []
+        },
         //"All-in-one" deploy task
         {
             "label": "deploy",
@@ -103,7 +138,9 @@
             "group": "none",
             "dependsOn": [
                 "copyzip",
-                "extractzip"
+                "movetoplugins",
+                "extractzip",
+                "restoreperms"
             ],
             "problemMatcher": []
         },
@@ -115,7 +152,20 @@
             "group": "none",
             "dependsOn": [
                 "build",
-                "deploy"
+                "deploy",
+            ],
+            "problemMatcher": []
+        },
+        //"All-in-on" build & deploy & restartdecky task
+        {
+            "label": "builddeployrestart",
+            "detail": "Builds plugin, deploys to deck and restart decky",
+            "dependsOrder": "sequence",
+            "group": "none",
+            "dependsOn": [
+                "build",
+                "deploy",
+                "restartdecky"
             ],
             "problemMatcher": []
         },
